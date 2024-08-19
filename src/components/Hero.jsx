@@ -5,6 +5,8 @@ import { BackgroundCircles, BottomLine, Gradient } from "./design/Hero";
 import { heroIcons } from "../constants";
 import { ScrollParallax } from "react-just-parallax";
 import { useRef } from "react";
+import Generating from "./Generating";
+import Notification from "./Notification";
 
 export default function Hero() {
   const parallaxRef = useRef(null);
@@ -23,7 +25,7 @@ export default function Hero() {
         mb-[3.875rem] md:mb-20 lg:mb-[6.25rem]"
         >
           <h1 className="h1 mb-6">
-            Explore the Possibilities of AI Chatting with
+            Explore the Possibilities of &nbsp;AI&nbsp; Chatting with {` `}
             <span className="inline-block relative">
               Brainwave
               <img
@@ -60,24 +62,36 @@ export default function Hero() {
                   height={490}
                   alt="AI"
                 />
+                <Generating
+                  className="absolute left-4 right-4 bottom-5 md:left-1/2 
+                md:right-auto md:bottom-8 md:w-[31rem] md:-translate-x-1/2"
+                />
                 <ScrollParallax isAbsolutelyPositioned>
                   <ul
                     className="hidden absolute -left-[5.5rem] bottom-[7.5rem] 
                   px-1 py-1 bg-n-9/40 backdrop-blur border border-n-1/10 rounded-2xl xl:flex"
                   >
-                    {heroIcons.map((icon, index) => {
+                    {heroIcons.map((icon, index) => (
                       <li className="p-5" key={index}>
                         <img src={icon} width={24} height={25} alt={icon} />
-                      </li>;
-                    })}
+                      </li>
+                    ))}
                   </ul>
+                </ScrollParallax>
+
+                <ScrollParallax isAbsolutelyPositioned>
+                  <Notification
+                    className="hidden absolute -right-[5.5rem] 
+                  bottom-[11rem] w-[18rem] xl:flex"
+                    title="Code generation"
+                  />
                 </ScrollParallax>
               </div>
             </div>
             <Gradient />
           </div>
           <div
-            className="absolute -top-[54%] left-1/2 w-[234%] -translate-x-1/2 md:-top-[46%]
+            className="-z-10 absolute -top-[54%] left-1/2 w-[234%] -translate-x-1/2 md:-top-[46%]
           md:w-[138%] lg:-top-[104%]"
           >
             <img
@@ -91,6 +105,7 @@ export default function Hero() {
           <BackgroundCircles />
         </div>
       </div>
+      <BottomLine />
     </Section>
   );
 }
